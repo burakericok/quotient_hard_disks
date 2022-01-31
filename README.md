@@ -3,4 +3,4 @@ This repository contains the source codes and the relevant data for the publicat
 
 The folders hexagonal torus and square torus contains the corresponding source codes and data to generate all the results presented in this paper. The folders are organized as follows:
 
-- The folder 'finding_critical_points'
+- The folder 'finding_critical_points' contains the source code (both in C++ and MATLAB) to find the critical points and the critical points themselves. 
