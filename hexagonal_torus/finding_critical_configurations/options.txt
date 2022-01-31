@@ -1,0 +1,14 @@
+#----------------------------------------
+#
+#  Config file for hard disk simulation
+#
+#----------------------------------------
+
+NDisks	        2
+NTrials         100000
+
+NThreads        7
+WIncrements     40
+
+TimeInterval    60
+BackupInterval  600
