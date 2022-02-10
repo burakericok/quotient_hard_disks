@@ -254,13 +254,10 @@ Recall that the base configuration space for two disks is the product space $T^2
 where $\phi = (a / 2 - x) / R$ and $\theta = (b / 2 - y) / r$. This is used for the visualizations of $\Lambda/\mathcal{S}_1$ below.
 
 All other quotient spaces are initially embedded in an infinite-dimensional descriptor space, and a numerical approach is used to estimate the minimum number of descriptors necessary to maintain the embedding. \red{This idea is analogous to representing a function in the Fourier space, but using a finite subset of infinitely-many coefficients.} Given a configuration space of $n$ disks, the distribution $f$ is defined as a sum of Dirac-delta distributions $\delta(\vec{a}_j)$ located at the disk centers $\vec{a}_j$ in the $a_1a_2$-coordinate system in Fig.\ \ref{fig:figure2}, or
-\begin{subequations}
-	\begin{align}
-	f(\vec{a}) 	&= \sum_{j = 1}^{n} \delta(\vec{a}_j) \\ 
-				&= \sum_{\vec{k}} {c_{\vec{k}} \exp{(2\pi \rmi \vec{k} \cdot \vec{a})}}
+\begin{equation}
+	f(\vec{a}) 	= \sum_{j = 1}^{n} \delta(\vec{a}_j) = \sum_{\vec{k}} {c_{\vec{k}} \exp{(2\pi \rmi \vec{k} \cdot \vec{a})}}
 	\label{eq:f}
-	\end{align}
-\end{subequations}
+\end{equation}
 where $c_{\vec{k}}$ are the complex coefficients of the reciprocal lattice expansion and $\vec{k} = [p, q]$ for integers $p$ and $q$. The infinite set of $c_{\vec{k}}$ can be calculated using the orthogonality of the complex exponentials as
 \begin{equation}
 c_{\vec{k}} = \sum_{j=1}^{n} \exp{(-2\pi \rmi \vec{k} \cdot \vec{a}_j)} .
