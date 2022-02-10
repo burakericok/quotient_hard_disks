@@ -530,10 +530,8 @@ Even though this work considers only a pair of hard disks, extending and applyin
 
 
 
-	Finally, the descriptors $\hat{z}_{\vec{k}}$ in Eq.\ \ref{eq:z_hat_k} are not all independent. Let $\vec{x}$ and $\vec{a}$ respectively be the coordinates of a point in the $xy$-coordinate system and $a_1a_2$-coordinate system as shown in Fig.\ \ref{fig:app2}. \red{}
+	Finally, the descriptors $\hat{z}_{\vec{k}}$ in Eq.\ \ref{eq:z_hat_k} are not all independent. \red{Figure \ref{fig:app2} shows two different coordinate systems ($xy$- and $a_1a_2$-) associated with the hexagonal domain. The reason why there are two different coordinate systems is that representing configurations in the $xy$-coordinate system is more intuitive but descriptor calculations are easier in $a_1a_2$-coordinate systems. Let $\vec{x}$ and $\vec{a}$ respectively be the coordinates of a point in the $xy$-coordinate system and $a_1a_2$-coordinate system. A given configuration $\config{p}$ can then be represented by different coordinates. Let $\mat{T}$ be the forward coordinate transformation matrix between $xy$- and $a_1a_2$-coordinate systems such that $\vec{a} = \mat{T} \vec{x}$ and $\vec{x} = \mat{T}^{-1} \vec{a}$. } 
 	
-	Let $\mat{T}$ be the forward transformation matrix such that $\vec{a} = \mat{T} \vec{x}$ and $\vec{x} = \mat{T}^{-1} \vec{a}$. 
-
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.6\columnwidth]{app2.eps}
@@ -543,13 +541,12 @@ Even though this work considers only a pair of hard disks, extending and applyin
 
 
 	
-
 	
-	Let $\mathcal{L}$ be the set of symmetries of the tiling of the plane, and $\mat{L}$ be one of the corresponding matrices written using the $xy$-coordinate system. Let $\vec{x}$ be the position of a disk and $\vec{x}' = \mat{L} \vec{x}$ the position of the disk under the action of $L \in \mathcal{L}$. Then
+	Let $\mathcal{L}$ be the set of symmetries of the tiling of the plane, and $\mat{L}$ be one of the corresponding matrices written using the $xy$-coordinate system. Let $\vec{x}$ be the position of a disk and $\vec{x}' = \mat{L} \vec{x}$ the position of the disk under the action of $L \in \mathcal{L}$. \red{As an example, consider the yellow square in Fig.\ \ref{fig:app2} that is obtained by rotating the green square by $2\pi/3$ counter clockwise. The corresponding rotation matrix $\mat{L}$ represents this symmetry operation using the $xy$ representations of $\config{p}$ and $\config{p}^{\prime}$. The same operation can also be represented using the $a_1a_2$ representations of $\config{p}$ and $\config{p}^{\prime}$ as  }
 	\begin{equation*} 
 	\vec{a}' = \mat{T} \vec{x}' = \mat{T} \mat{L} \vec{x} = \mat{T} \mat{L} \mat{T}^{-1} \vec{a} = \mat{U} \vec{a}  
 	\end{equation*}
-	where $\mat{U} = \mat{T} \mat{L} \mat{T}^{-1}$. $\mat{U}$ is equivalent to $\mat{L}$, but is written using the $a_1a_2$-coordinate system.
+	where $\mat{U} = \mat{T} \mat{L} \mat{T}^{-1}$. $\mat{U}$ is equivalent to $\mat{L}$, but is written using the $a_1a_2$-coordinate system. \red{This makes the descriptors $z_{\vec{k}}$ of two symmetric configurations be related to each other with the relation is precisely defined by $\mat{U}$.}
 	
 	For the square torus, $\mat{T} = [1, 0; 0, 1]$ and $\mathcal{L}$ is the dihedral symmetry group of order eight ($D_4$). Equation \ref{eq:z_hat_k} is
 	\begin{equation*}
