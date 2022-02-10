@@ -268,7 +268,7 @@ $c_{\vec{k}}$ respects the periodicity of the lattice and is invariant to permut
 z_{\vec{k}} = \sqrt{c^\ast_{\vec{k}} c_{\vec{k}}}
 \label{eq:z_k}
 \end{equation}
-where $^\ast$ denotes the complex conjugate, are a set of real-valued descriptors that are invariant to disk label permutations and rigid translations. Observe that the descriptors $z_{\vec{k}}$ also respect inversion symmetry. Numerical experiments indicate that the rank of the Jacobian of the map from the $\vec{a}_j$ to the $z_{\vec{k}}$ is generically $2(n - 1)$, suggesting that some number of these descriptors could be sufficient to construct an embedding of $\Lambda / \mathcal{S}_2$.
+where $^\ast$ denotes the complex conjugate, are a set of real-valued descriptors that are invariant to disk label permutations and rigid translations. Observe that the descriptors $z_{\vec{k}}$ also respect inversion symmetry. \red{An illustration of the procedure above is provided in Fig.\ \ref{fig:app1} in App.\ \ref{sec:descriptor_proofs}. } Numerical experiments indicate that the rank of the Jacobian of the map from the $\vec{a}_j$ to the $z_{\vec{k}}$ is generically $2(n - 1)$, suggesting that some number of these descriptors could be sufficient to construct an embedding of $\Lambda / \mathcal{S}_2$.
 
 Constructing an embedding of $\Lambda / \mathcal{S}_3$ further requires the descriptors to be invariant to the symmetries of the plane tiling. This is done explicitly as
 \begin{equation}
@@ -472,6 +472,64 @@ Even though this work considers only a pair of hard disks, extending and applyin
 	\section{Relations between the $z_{\vec{k}}$}
 	\label{sec:descriptor_proofs}
 	
+	This section provides proofs and supporting materials to show the relations among the descriptors. Let $\vec{x}$ and $\vec{a}$ respectively be the coordinates of a vector in the $xy$-coordinate system and $a_1a_2$-coordinate system. Let $\mat{T}$ be the forward coordinate transformation matrix such that $\vec{a} = \mat{T} \vec{x}$ and $\vec{x} = \mat{T}^{-1} \vec{a}$. 
+	
+	The procedure to calculate the descriptors $z_{\vec{k}}$ is illustrated in Fig.\ \ref{fig:app1}. For a configuration $\config{p}$ whose coordinates are given in $xy$-coordinate system, the first step is to find the corresponding coordinates of the disks in the $a_1a_2$-coordinate system, and define the function $f(\vec{a})$ using Eq.\ \ref{eq:f}. Observe that the resulting function will be the same for each $n!$ permutations of the disk labels. Then, the complex coefficients of the infinite expansion in Eq.\ \ref{eq:f} are calculated using the orthogonality of complex exponentials as shown in Eq.\ \ref{eq:c_k}. The final step is then to take the modulus of these complex coefficients using Eq.\ \ref{eq:z_k}. Observe that the complex coefficients and the descriptors are sorted with respect to the distance of $\vec{k}$ from the origin. Moreover, observe that the complex coefficients $c_{\vec{k}}$ and $c_{-\vec{k}}$ have the same descriptors $z_{\vec{k}}$ for a given configuration.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.0\columnwidth]{app1.eps}
+		\caption{$3!$ permutations of a given configuration will result in the same function $f(\vec{a})$ after using Eq.\ \ref{eq:f}. The complex coefficients are calculated using Eq.\ \ref{eq:c_k}. Finally, the descriptors $z_{\vec{k}}$ are then defined as the modulus of the complex coefficients.}
+		\label{fig:app1}
+	\end{figure}
+	
+	The complex coefficients $c_{\vec{k}}$ is equal to $c^{\ast}_{-\vec{k}}$ where $^{\ast}$ denotes complex conjugate.
+	\begin{proof}
+		Let $\config{p}$ be a configuration and $\vec{p}$ be the coordinates of the disks in $a_1a_2$-coordinate system.
+		\begin{align*} 
+		c_{\vec{k}}(\config{p}) &=  \sum_{j=1}^{n} \exp{(-2\pi \rmi \vec{k} \cdot \vec{p}_j)} \nonumber \\ 
+		&= \left\{ \sum_{j=1}^{n} \exp{(2\pi \rmi \vec{k} \cdot \vec{p}_j)} \right\}^{\ast} \nonumber \\
+		&= \left\{ \sum_{j=1}^{n} \exp{[-2\pi \rmi (-\vec{k} \cdot \vec{p}_j)]} \right\}^{\ast} \nonumber \\
+		&= c_{-\vec{k}}^{\ast}(\config{p})
+		\end{align*}
+	\end{proof}	
+
+	The descriptors $z_{\vec{k}}(\config{p}) = z_{-\vec{k}}(\config{p})$.
+	\begin{proof}
+		Using the fact that $c_{\vec{k}} = c^{\ast}_{-\vec{k}}$
+		\begin{align*} 
+		z_{\vec{k}}(\config{p}) =  \sqrt{c_{\vec{k}}(\config{p}) c_{\vec{k}}^\ast(\config{p})} = \sqrt{c^{\ast}_{-\vec{k}}(\config{p}) c_{-\vec{k}}(\config{p})} = z_{-\vec{k}}(\config{p})
+		\end{align*}
+	\end{proof}		
+	
+	The descriptors $z_{\vec{k}}$ in Eq.\ \ref{eq:z_k} are invariant under inversion.
+	\begin{proof}
+		Let $\config{p}$ and $\config{q}$ be two configurations that differ by an inversion symmetry such that $\vec{p}_i = -\vec{q}_i$ for all $i$. Then
+		\begin{align*} 
+		c_{\vec{k}}(\config{p}) &= 
+		\sum_{j = 1}^{n} \exp{(-2\pi \rmi \vec{k} \cdot \vec{p}_j)} \\ \nonumber 
+		&= \sum_{j = 1}^{n} \exp{(2\pi \rmi \vec{k} \cdot \vec{q}_j)} \\ \nonumber
+		&= c_{\vec{k}}^\ast(\config{q}) \nonumber \\ 
+		z_{\vec{k}}(\config{p}) &= \sqrt{c_{\vec{k}}(\config{p}) c_{\vec{k}}^\ast(\config{p})} = \sqrt{c_{\vec{k}}^\ast(\config{q}) c_{\vec{k}}(\config{q})} = z_{\vec{k}}(\config{q})
+		\end{align*}
+	\end{proof}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	The descriptors $z_{\vec{k}}$ in Eq.\ \ref{eq:z_k} are invariant under translation.
 	\begin{proof}
 		Let $\config{p}$ and $\config{q}$ be two configurations that differ by a translation $\vec{\Delta}$ such that $\vec{p}_i = \vec{q}_i + \vec{\Delta}$ for all $i$. Then
@@ -486,17 +544,7 @@ Even though this work considers only a pair of hard disks, extending and applyin
 	\end{proof}
 
 	
-	The descriptors $z_{\vec{k}}$ in Eq.\ \ref{eq:z_k} are invariant under inversion.
-	\begin{proof}
-		Let $\config{p}$ and $\config{q}$ be two configurations that differ by an inversion symmetry such that $\vec{p}_i = -\vec{q}_i$ for all $i$. Then
-		\begin{align*} 
-			c_{\vec{k}}(\config{p}) &= 
-			\sum_{j = 1}^{n} \exp{(-2\pi \rmi \vec{k} \cdot \vec{p}_j)} \\ \nonumber 
-			&= \sum_{j = 1}^{n} \exp{(2\pi \rmi \vec{k} \cdot \vec{q}_j)} \\ \nonumber
-			&= c_{\vec{k}}^\ast(\config{q}) \nonumber \\ 
-			z_{\vec{k}}(\config{p}) &= \sqrt{c_{\vec{k}}(\config{p}) c_{\vec{k}}^\ast(\config{p})} = \sqrt{c_{\vec{k}}^\ast(\config{q}) c_{\vec{k}}(\config{q})} = z_{\vec{k}}(\config{q})
-		\end{align*}
-	\end{proof}
+
 	
 	Finally, the descriptors $\hat{z}_{\vec{k}}$ in Eq.\ \ref{eq:z_hat_k} are not all independent. Let $\vec{x}$ and $\vec{a}$ respectively be the coordinates of a vector in the $xy$-coordinate system and $a_1a_2$-coordinate system. Let $\mat{T}$ be the forward transformation matrix such that $\vec{a} = \mat{T} \vec{x}$ and $\vec{x} = \mat{T}^{-1} \vec{a}$. 
 	
