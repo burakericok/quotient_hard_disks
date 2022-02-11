@@ -1,6 +1,6 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % 
-%   sample_points.m
+%   config_t.m
 % 
 %   Purpose:  sample points uniformly in the fundamental torus.
 %        
@@ -34,16 +34,16 @@ clc;clear;clf;close all
 
 
 % Variables
-n = 2;      % number of disks
-N = 1e4;    % total number of configurations
+n_disks = 2;      % number of disks
+n_points = 1e4;    % total number of configurations
 
 % The square torus is centered at the origin with a center to center
 % distance of 1. Sample points on a larger area. 
-points = 2*rand(N,2*n) - 1;
+points = 2*rand(n_points,2*n_disks) - 1;
 
 % Map them back to the fundamental cell.
-for i = 1 : N
-    for j = 1 : n
+for i = 1 : n_points
+    for j = 1 : n_disks
         % map back each disk
         x = periodic_x(points(i,2*j-1),points(i,2*j),0);
         y = periodic_y(points(i,2*j-1),points(i,2*j),0);
@@ -52,8 +52,8 @@ for i = 1 : N
 end
 
 % Find the radius of each configuration
-radii = zeros(N,1);
-for i = 1 : N
+radii = zeros(n_points,1);
+for i = 1 : n_points
     radii(i) = min(radius(points(i,:)));
 end
 
