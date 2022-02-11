@@ -41,6 +41,9 @@ points = dlmread('datasets/points.txt');
 radii = dlmread('datasets/radii.txt');
 cd( currentDir )
 
+points = points(1:1000,:);
+radii = radii(1:1000,:);
+
 % Constants
 n_disks = 2;
 n_points = size(points,1);
@@ -97,6 +100,10 @@ filtration = filtrationValueAlgorithm( dt, torus_3d );
 time = toc;
 
 % length scale analysis
-[ lengths_mean, lengths_std ] = lengthScaleAnalysis(filtration, torus_3d);
+alphas = 10.^linspace( log10(min(nonzeros(filtration(:,end)))*1.01), ...
+    log10(max(nonzeros(filtration(:,end)))*1.01), 50 );
+[ lengths_mean, lengths_std ] = lengthScaleAnalysis(filtration, torus_3d, alphas);
 
-
+% % visulize the resulting alpha complex
+% alpha_filter = 0.01;    % choose from length scale analysis
+% plotComplex(torus_3d,filtration,alpha_filter);

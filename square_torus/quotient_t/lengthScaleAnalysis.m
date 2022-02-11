@@ -5,6 +5,8 @@
 %   Purpose:  conducts length scale analysis of an alpha-complex
 %
 %   @input filtration: filtration values of an alpha complex
+%   @input points: coordinates of the points
+%   @input alphas: alpha values considered for filtrations
 %
 %   @output lengths_mean: mean edge length as a function of alpha
 %   @output lengths_std: deviation in edge length as a function of alpha
@@ -36,11 +38,7 @@
 %        
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
-function [lengths_mean,lengths_std] = lengthScaleAnalysis(filtration, points)
-
-% alpha values considered
-alphas = 10.^linspace( log10(min(nonzeros(filtration(:,end)))*1.01), ...
-    log10(max(nonzeros(filtration(:,end)))*1.01), 50 );
+function [lengths_mean,lengths_std] = lengthScaleAnalysis(filtration, points, alphas)
 
 % initialize mean and std of the edge lengths
 lengths_mean = zeros( length( alphas ), 1 );
