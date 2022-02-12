@@ -65,6 +65,11 @@ arma::mat readPoints(std::string, int, int);
 arma::umat findAllPermutations(int);
 
 //----------------------------------------
+// Find the symmetric copies
+//----------------------------------------
+arma::mat generateCopies(arma::vec &, std::string);
+
+//----------------------------------------
 // Find all permutation, inversion, lattice symmetric copies
 //----------------------------------------
 arma::mat symmetryPIL(arma::vec &, arma::umat &, int);
@@ -77,7 +82,7 @@ arma::mat symmetryPI(arma::vec &, arma::umat &, int);
 //----------------------------------------
 // Write results
 //----------------------------------------
-void writeResults(std::string, arma::mat &);
+void writeResults(std::string, arma::vec &);
 
 //----------------------------------------
 // Get current directiory

@@ -20,6 +20,19 @@
 
 int main() {
   ////////////////////////////////////////////////////////////
+  // Variables
+  //
+  // n_disk: number of disks
+  // n_points: number of n_points
+  // symmetry: specifies the symmetries considered:
+  //   symmetry = "pti" for permuation, translation, inversion invariant config spaces
+  //   symmetry = "ptil" for permuation, translation, inversion, lattice invariant config spaces
+  ////////////////////////////////////////////////////////////
+  int n_disk = 2;
+  int n_points = 10000;
+  std::string symmetry = "pti"; // or "ptil"
+
+  ////////////////////////////////////////////////////////////
   // Start timer
   ////////////////////////////////////////////////////////////
   auto start = std::chrono::high_resolution_clock::now();
@@ -33,26 +46,19 @@ int main() {
   ////////////////////////////////////////////////////////////
   // Load the sampled points and radii
   ////////////////////////////////////////////////////////////
-  int n_disk = 2, n_points = 10000;
   arma::mat points(2*n_disk,n_points);
   points = readPoints("data/points.txt",n_points,2*n_disk);
 
   ////////////////////////////////////////////////////////////
-  // Pre-process.
-  //////////////////////////////////////////////////////////////
-  arma::umat all_perms;
-  all_perms = findAllPermutations(n_disk);
-
-  ////////////////////////////////////////////////////////////
   // Main
   ////////////////////////////////////////////////////////////
-  arma::vec dist, point1, point2, xi, xf, t, disp(n_disk);
-  arma::mat results, dij, copies_point2;
+  arma::vec dist, point1, point2, xi, xf, t, disp(n_disk), dij;
+  arma::mat results, copies_point2;
   int voidvar;
   _periodic_xy periodic_xy;
   int inc = 0;
 
-  dij.zeros(n_points*(n_points-1)/2,3);
+  dij.zeros(n_points*(n_points-1)/2);
   for (size_t i = 0; i < n_points; i++) {
     // First point.
     point1 = points.col(i);
@@ -63,8 +69,7 @@ int main() {
       std::cout << "currently on i:" << i << " j: " << j << '\n';
 
       // find the appropriate symmetric copies of point2.
-      copies_point2 = symmetryPI(point2,all_perms,n_disk);      // for p,t,i inversion config space
-      //copies_point2 = symmetryPIL(point2,all_perms,n_disk);  // for p,t,i,l inversion config space
+      copies_point2 = generateCopies(point2,symmetry);
 
       // find the closest copies of each point.
       results = tabuSearch(point1,copies_point2);
@@ -79,13 +84,9 @@ int main() {
       dist = arma::sum(disp);
 
       // store results
-      dij.row(inc)[0] = i+1;
-      dij.row(inc)[1] = j+1;
-      dij.row(inc)[2] = dist[0];
-      inc++;
+      dij[inc++] = dist[0];
     }
   }
-
 
   // Write the results to a file.
   std::string name = "pairwise_distances.txt";

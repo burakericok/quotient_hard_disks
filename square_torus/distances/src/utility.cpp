@@ -97,6 +97,32 @@ arma::umat findAllPermutations(int n_disk){
 }
 
 //----------------------------------------
+// Find the symmetric copies
+//----------------------------------------
+arma::mat generateCopies(arma::vec & orig_xf, std::string symmetry){
+  arma::mat copies_xf;
+
+  // number of disks
+  int n_disk = orig_xf.size()/2;
+
+  // find all the permutations
+  arma::umat all_perms;
+  all_perms = findAllPermutations(n_disk);
+
+  if(symmetry == "pti"){
+    // permutation, translation, inversion invariant config space
+    copies_xf = symmetryPI(orig_xf,all_perms,n_disk);
+  }
+
+  if(symmetry == "ptil"){
+    // permutation, translation, inversion, lattice invariant config space
+    copies_xf = symmetryPIL(orig_xf,all_perms,n_disk);
+  }
+
+  return copies_xf;
+}
+
+//----------------------------------------
 // Find all permuted and rotated and mirrored coordinates
 //----------------------------------------
 arma::mat symmetryPIL(arma::vec & orig_xf, arma::umat & all_perms, int n_disk){
@@ -181,14 +207,11 @@ arma::mat symmetryPI(arma::vec & orig_xf, arma::umat & all_perms, int n_disk){
 //----------------------------------------
 // Write results
 //----------------------------------------
-void writeResults(std::string filename, arma::mat & dij){
+void writeResults(std::string filename, arma::vec & dij){
   std::fstream file;
   file.open(filename,std::fstream::out);
-  for (size_t i = 0; i < dij.n_rows; i++) {
-    for (size_t j = 0; j < dij.n_cols; j++) {
-      file << std::setprecision(18) << dij.row(i)[j] << ' ';
-    }
-    file << '\n';
+  for (size_t i = 0; i < dij.n_elem; i++) {
+      file << std::setprecision(18) << dij[i] << std::endl;
   }
   file.close();
 }
