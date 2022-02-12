@@ -15,7 +15,7 @@
 %   CODE-636759. All rights reserved.
 %   
 %   This file is part of the "Quotient maps and configuration spaces of 
-%   hard disks.  Please read LICENSE.txt for Our Notice and GNU General 
+%   hard disks".  Please read LICENSE.txt for Our Notice and GNU General 
 %   Public License information.
 %   
 %   This program is free software; you can redistribute it and% or modify
