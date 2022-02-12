@@ -13,9 +13,8 @@
 //
 //  CODE-636759. All rights reserved.
 //
-//  This file is part of the Calculating Distance on the Quotient Spaces of
-//  Hard Spheres on Torus.  Please read LICENSE.txt for Our Notice and GNU
-//  General Public License information.
+//  This file is part of "Quotient maps and configuration spaces of hard disks".  
+//  Please read LICENSE.txt for Our Notice and GNU General Public License information.
 //
 //  This program is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License (as published by
