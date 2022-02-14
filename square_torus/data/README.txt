@@ -11,7 +11,6 @@ Main files:
 - pairwise_dist_ptil.txt: Distances calculated with Eq. 3 in the translation, permutation, inversion and lattice symmetries invariant configuration space (Not included here because of size limit. Downloadable from the link below.*)
 *Link: https://drive.google.com/drive/folders/1QVHcWLroYeHumJE6VDFju9ZyLClWR2TU?usp=sharing
 
-
 Supplementary files:
 - radius.m: Calculates radius of configurations.
 - periodic_x.m and periodic_y.m: Utility functions to map a configuration back to fundamental region.
