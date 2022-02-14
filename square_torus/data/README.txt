@@ -10,6 +10,8 @@ Main files:
 - pairwise_dist_pti.txt: Distances calculated with Eq. 3 in the translation, permutation and inversion invariant configuration space (Not included here because of size limit. Downloadable from the link below.*)
 - pairwise_dist_ptil.txt: Distances calculated with Eq. 3 in the translation, permutation, inversion and lattice symmetries invariant configuration space (Not included here because of size limit. Downloadable from the link below.*)
 *Link: https://drive.google.com/drive/folders/1QVHcWLroYeHumJE6VDFju9ZyLClWR2TU?usp=sharing
+- descriptors_pti.txt: Descriptors in Eq. 6 for points in 'points.txt'.
+- descriptors_ptil.txt: Descriptors in Eq. 7 for points in 'points.txt'.
 
 Supplementary files:
 - radius.m: Calculates radius of configurations.
