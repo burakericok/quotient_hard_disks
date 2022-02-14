@@ -37,12 +37,9 @@ clc;clear;clf;close all
 % Read the points and the corresponding radii.
 currentDir = cd;
 cd ..
-points = dlmread('datasets/points.txt');
-radii = dlmread('datasets/radii.txt');
+points = dlmread('data/points.txt');
+radii = dlmread('data/radii.txt');
 cd( currentDir )
-
-points = points(1:1000,:);
-radii = radii(1:1000,:);
 
 % Constants
 n_disks = 2;
