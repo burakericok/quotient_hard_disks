@@ -37,10 +37,10 @@ clc;clear;clf;close all
 % lattice symmertries.
 n_disk = 2;             % number of disks.
 symmetry = "pti";       % for P,T,I invariant quotient space.
-symmetry = "ptil";    % for P,T,I,L invariant quotient space.
+symmetry = "ptil";      % for P,T,I,L invariant quotient space.
 max_k = 10;             % maximum wavenumber k.
 reciprocal_limit = 48;  % maximum distance from the origin in reciprocal space.
-n_descriptors = 10;     % number of descriptors that will be calculated.
+n_descriptors = 6;      % number of descriptors that will be calculated.
 
 % Read the points and the corresponding radii.
 currentDir = cd;
