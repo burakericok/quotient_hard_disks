@@ -34,14 +34,16 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 clc;clear;clf;close all
 
-% Select the metric for the quotient space: 
-% Euclidean distance using descriptors or distance in Eq. 3.
+% Select the metric for the quotient space: "descriptors" or "eq3"
 metric = "descriptors";
-metric = "eq3";
+% metric = "eq3";
+no_dims = 3;    
+k = 20;
 
 % Construct the pairwise distance matrix.
 pair_dist = readDistances(metric);
 
-
+% Find the embedding in the Euclidean space using ISOMAP.
+embedding = embedISOMAP( pair_dist, no_dims, k );
 
 
