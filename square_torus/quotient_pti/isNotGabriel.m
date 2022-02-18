@@ -1,11 +1,16 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % 
-%   config_pti.m
-%  
-%   Purpose: constructs the permutaiton, translation and inversion
-%   invariant configuration space (or quotient space). Embeds the points in
-%   the Euclidean space and constructs alpha-complex.
+%   isNotGabrial.m
+% 
+%   Purpose:  Decides whether the given simplex is Gabriel or not.
 %
+%   @input points: coordinates of the points
+%   @input simplex: given simplex
+%   @input alpha2: square of the alpha value in alpha-complex
+%
+%   @output notGabriel: true if not gabriel (if there is a point in the
+%   circumsphere)
+%        
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
 %   Copyright (c) 2020. Produced in the Materials Science and Engineering
@@ -32,36 +37,21 @@
 %   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 %        
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-clc;clear;clf;close all
+function [ notGabriel ] = isNotGabriel( points, simplex, alpha2 )
 
-% Select the metric for the quotient space: "descriptors" or "eq3"
-metric = "descriptors";
-% metric = "eq3";
-no_dims = 3;    
-k = 20;
+% % Find the circumcenter of n-simplex.
+verticies = points(simplex,:);
+[ ~, center ] = findCircumsphereRadiusCenter( verticies );
 
-% Construct the pairwise distance matrix.
-pair_dist = readDistances(metric);
+% check whether circumsphere contains any point.
+% remove n-vertices from the points list
+% find euclidean distance
+rest_of_points = points;
+rest_of_points( simplex, : ) = [];
+dist2 = sum(( rest_of_points - repmat( center, size(rest_of_points,1),1 ) ).^2,2);
 
-% Find the embedding in the Euclidean space using ISOMAP.
-embedding = embedISOMAP( pair_dist, no_dims, k );
+% true, if not gabriel (if there is a point in circumsphere)
+notGabriel = any(dist2<alpha2);
 
-% Find the alpha-complex representation
-% Delaunay triangulation of n-dimensional data
-dt = delaunayn( embedding );
-
-% Apply filtration value algorithm to find alpha complex
-% Algorithm: http://gudhi.gforge.inria.fr/doc/latest/group__alpha__complex.html
-tic
-filtration = filtrationValueAlgorithm( dt, embedding );
-time = toc;
-
-% length scale analysis
-alphas = 10.^linspace( log10(min(nonzeros(filtration(:,end)))*1.01), ...
-    log10(max(nonzeros(filtration(:,end)))*1.01), 50 );
-[ lengths_mean, lengths_std ] = lengthScaleAnalysis(filtration, embedding, alphas);
-
-% % visulize the resulting alpha complex
-% alpha_filter = 0.5;    % choose from length scale analysis
-% plotComplex(embedding,filtration,alpha_filter);
+end
 

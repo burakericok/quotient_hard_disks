@@ -1,11 +1,14 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % 
-%   config_pti.m
-%  
-%   Purpose: constructs the permutaiton, translation and inversion
-%   invariant configuration space (or quotient space). Embeds the points in
-%   the Euclidean space and constructs alpha-complex.
+%   findSimplexList.m
+% 
+%   Purpose:  Finds all the simplices in a given Delaunay triangulation
 %
+%   @input dt: Delaunay triangulation of a point cloud
+%
+%   @output simplex_list: list of simplices from dimension 0 to k where k
+%   is the maximum dimension of the points in dt.
+%        
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
 %   Copyright (c) 2020. Produced in the Materials Science and Engineering
@@ -32,36 +35,29 @@
 %   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 %        
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-clc;clear;clf;close all
 
-% Select the metric for the quotient space: "descriptors" or "eq3"
-metric = "descriptors";
-% metric = "eq3";
-no_dims = 3;    
-k = 20;
+function [ simplex_list ] = findSimplexList( dt )
+% Finds the simplex list given a triangulation.
+% Total number of simplicies (without uniquely counting):
+% Suppose highest order simplex is order of n. (for 2-simplex n=2)
+% nchoosek(n,n)+nchoosek(n,n-1)+...nchoosek(n,1) = 2^n - 1;
+% This is for a given n-simplex. Multiply this number by N=size(dt,1).
 
-% Construct the pairwise distance matrix.
-pair_dist = readDistances(metric);
+simplex_list = zeros(size(dt,1)*(2^size(dt,2)-1),size(dt,2));
+inc = 0;
+for i = 1 : size(dt,1)
+    sigma = dt(i,:);
+    for j = 1 : length(sigma)
+        j_simplicies = nchoosek( sigma, j );
+        for k = 1 : size( j_simplicies,1 )
+            inc = inc + 1;
+            simplex_list( inc, 1:j ) = j_simplicies(k,:); 
+        end 
+    end
+end
+simplex_list = sort(simplex_list,2);
+simplex_list = unique(simplex_list,'rows');
+simplex_list = flip(simplex_list);
 
-% Find the embedding in the Euclidean space using ISOMAP.
-embedding = embedISOMAP( pair_dist, no_dims, k );
-
-% Find the alpha-complex representation
-% Delaunay triangulation of n-dimensional data
-dt = delaunayn( embedding );
-
-% Apply filtration value algorithm to find alpha complex
-% Algorithm: http://gudhi.gforge.inria.fr/doc/latest/group__alpha__complex.html
-tic
-filtration = filtrationValueAlgorithm( dt, embedding );
-time = toc;
-
-% length scale analysis
-alphas = 10.^linspace( log10(min(nonzeros(filtration(:,end)))*1.01), ...
-    log10(max(nonzeros(filtration(:,end)))*1.01), 50 );
-[ lengths_mean, lengths_std ] = lengthScaleAnalysis(filtration, embedding, alphas);
-
-% % visulize the resulting alpha complex
-% alpha_filter = 0.5;    % choose from length scale analysis
-% plotComplex(embedding,filtration,alpha_filter);
+end
 
