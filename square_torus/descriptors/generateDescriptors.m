@@ -40,6 +40,9 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 function [ descriptors ] = generateDescriptors(points,symmetry,reciprocal_limit,max_k,n_descriptors)
+% number of disks.
+n_disk = size(points,2)/2;
+
 % Find the subset of wavenumbers k = [p q] whose distance from the origin
 % is at most reciprocal_limit.
 % list_of_indices: all the indices in the expansion.
