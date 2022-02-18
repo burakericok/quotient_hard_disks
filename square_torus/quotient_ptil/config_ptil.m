@@ -37,7 +37,7 @@ clc;clear;clf;close all
 % Select the metric for the quotient space: "descriptors" or "eq3"
 metric = "descriptors";
 % metric = "eq3";
-no_dims = 3;    
+no_dims = 2;    
 k = 20;
 
 % Construct the pairwise distance matrix.
