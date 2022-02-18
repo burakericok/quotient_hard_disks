@@ -39,7 +39,7 @@
 %   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 %        
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-function [ list_of_indices, sublist ] = findSubIndices( max_k, reciprocal_limit, ...
+function [ list_of_indices, sublist ] = findIndependentIndices( max_k, reciprocal_limit, ...
     symmetry )
 % Expansion parameters
 % Truncate the sum at the desired number of wiggles.
