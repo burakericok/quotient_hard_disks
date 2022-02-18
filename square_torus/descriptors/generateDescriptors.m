@@ -1,8 +1,16 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % 
-%   generate_descriptors.m
+%   generateDescriptors.m
 % 
-%   Purpose:  Calculates the descriptors in the quotient spaces.
+%   Purpose:  calculates the descriptors in quotient spaces.
+%
+%   @input points: configurations
+%   @input symmetry: quotient space symmetry
+%   @input reciprocal_limit: maximum distance from the origin in reciprocal space.
+%   @input max_k: maximum wavenumber k.
+%   @input n_descriptors: number of descriptors that will be calculated.
+%
+%   @output descriptors: Decriptors in Eq. 6 or 7.
 %        
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % 
@@ -30,30 +38,13 @@
 %   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 %        
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-clc;clear;clf;close all
 
-% % Variables
-% Let P be permutations, T be translations, I be inversions and L be
-% lattice symmertries.
-n_disk = 2;             % number of disks.
-symmetry = "pti";       % for P,T,I invariant quotient space.
-% symmetry = "ptil";    % for P,T,I,L invariant quotient space.
-max_k = 10;             % maximum wavenumber k.
-reciprocal_limit = 48;  % maximum distance from the origin in reciprocal space.
-n_descriptors = 6;      % number of descriptors that will be calculated.
-
-% Read the points and the corresponding radii.
-currentDir = cd;
-cd ..
-points = dlmread('data/points.txt');
-cd( currentDir )
-
+function [ descriptors ] = generateDescriptors(points,symmetry,reciprocal_limit,max_k,n_descriptors)
 % Find the subset of wavenumbers k = [p q] whose distance from the origin
 % is at most reciprocal_limit.
 % list_of_indices: all the indices in the expansion.
 % isublist: appropriate subset of list_of_indices based on given symmetry.
 [ ~, isublist ] = findIndependentIndices( max_k, reciprocal_limit , symmetry);
-
 
 % Calculate the descriptors
 if symmetry == "pti"
@@ -105,10 +96,7 @@ if symmetry == "ptil"
 end
 
 
-% % write the descriptors
-% precision = 6;
-% dlmwrite( [ 'descriptors.txt' ], descriptors, 'delimiter', '\t', 'precision', precision ); 
 
-
+end
 
 
