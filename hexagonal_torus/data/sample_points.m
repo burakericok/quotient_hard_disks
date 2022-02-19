@@ -37,12 +37,11 @@ clc;clear;clf;close all
 n_disks = 2;      % number of disks
 n_points = 1e4;    % total number of configurations
 
-% The square torus is centered at the origin with a center to center
-% distance of 1. Sample points on a larger area. 
+% The hexagonal torus is centered at the origin with a center to center
+% distance of 1.  
 points = zeros(n_points,2*n_disks);
 for i = 1 : n_points
     for j = 1 : n_disks
-        % map back each disk
         points(i,2*j-1:2*j) = [ rand-0.5, (rand*sqrt(3.)/2.)-(sqrt(3.)/4.) ];
     end
 end
