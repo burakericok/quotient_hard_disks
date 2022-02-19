@@ -1,6 +1,6 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 % 
-%   config_t.m
+%   sample_points.m
 % 
 %   Purpose:  sample points uniformly in the fundamental torus.
 %        
