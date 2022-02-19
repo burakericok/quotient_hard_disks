@@ -4,8 +4,15 @@ This repository contains the source codes and the relevant data for the publicat
 ## **Content**
 The folders 'hexagonal_torus' and 'square_torus' contain the corresponding source codes and the data to regenerate all the results presented in this paper. The folders are organized as follows:
 
+- The folder 'data' contains all the necessary data files to reproduce the results presented in the paper.
+- The folder 'descriptors' contains the source codes regarding Sec. 5 and App. B of the publication.
+- The folder 'distances' contains the source codes regardig Sec.4 and App. A.
 - The folder 'finding_critical_points' contains the source code (both in C++ and MATLAB) to find the critical points and the critical points themselves. 
-- 
+- The folder 'quotient_t' contains the source codes regarding Sec. 6.1.
+- The folder 'quotient_pti' contains the source codes regarding Sec. 6.2.
+- The folder 'quotient_ptil' contains the source codes regarding Sec. 6.3.
+
+The usage of each folder is further explained in the corresponding README.txt files within the folder.
 
 ## **References**
 Research into the topology of the configuration space of hard disks is ongoing, but the references below provide some context for this project.
